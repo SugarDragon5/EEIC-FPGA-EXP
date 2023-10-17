@@ -4,14 +4,19 @@
 module tb_tsp;
 reg clk;
 reg rst_n;
+wire [31:0] xs[63:0],ys[63:0];
+wire [31:0] path[63:0];
 
 tsp tsp1
 (
     .rst (rst_n),
-    .clk (clk)
+    .clk (clk),
+    .xs (xs),
+    .ys (ys),
+    .path (path)
 );
 
-localparam CLK_PERIOD = 10;
+localparam CLK_PERIOD = 5;
 always #(CLK_PERIOD/2) clk=~clk;
 
 initial begin
@@ -19,11 +24,21 @@ initial begin
     $dumpvars(0, tb_tsp);
 end
 
+integer i;
+
 initial begin
     #1 rst_n<=1'bx;clk<=1'b0;
     #(CLK_PERIOD*3) rst_n<=1;
     #(CLK_PERIOD*3) rst_n<=0;
-    repeat(1000) @(posedge clk);
+    repeat(10000) @(posedge clk);
+    $display("xs, ys");
+    for(i=0;i<64;i++)begin
+        $display("%d, %d",xs[i],ys[i]);
+    end
+    $display("path");
+    for(i=0;i<64;i++)begin
+        $display("%d",path[i]);
+    end
     $finish(2);
 end
 

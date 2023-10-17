@@ -1,15 +1,14 @@
 `include "graph.sv"
 `include "swap.sv"
 module tsp (
-    clk,rst
+    clk,rst,xs,ys,path
 );
     input clk,rst;
-    wire [31:0] xs[63:0];
-    wire [31:0] ys[63:0];
+    output wire [31:0] xs[63:0],ys[63:0];
+    output reg [31:0] path[63:0];
     wire complete_graph_gen;
     reg [31:0] stage;
     reg [31:0] cnt;
-    reg [31:0] path[63:0];
     reg [31:0] v1,v2;
     graph graph(
         .clk(clk),.rst(rst),
