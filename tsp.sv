@@ -70,8 +70,8 @@ module tsp (
                 rst_swap<=0;
             end else if(complete_check_swap)begin
                 if(should_swap)begin
-                    path[v1]<=v2;
-                    path[v2]<=v1;
+                    path[v1]<=path[v2];
+                    path[v2]<=path[v1];
                 end
                 stage<=1;
                 cnt<=0;
