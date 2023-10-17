@@ -1,4 +1,4 @@
-`include "graph.v"
+`include "graph.sv"
 `default_nettype none
 
 module tb_graph;

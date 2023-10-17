@@ -25,7 +25,7 @@ module graph
         else if(complete==0)begin
             // x座標の初期化
             if(cnt<64) begin
-                xs[cnt]<=rnd_val;
+                xs[cnt]<=rnd_val[7:0];
             end
             // y座標の初期化
             else if(cnt<2*64) begin
