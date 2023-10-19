@@ -20,6 +20,8 @@ module tsp (
     reg [31:0] x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6;
     reg rst_swap;
     reg should_swap, complete_check_swap;
+    reg [31:0] swap_difference;
+    reg [31:0] total_difference;
     checkswap checkswap1(
         .clk(clk),.rst(rst_swap),
         .x1(x1),.y1(y1),
@@ -29,12 +31,14 @@ module tsp (
         .x5(x5),.y5(y5),
         .x6(x6),.y6(y6),
         .res(should_swap),
-        .complete(complete_check_swap)
+        .complete(complete_check_swap),
+        .difference(swap_difference)
     );
     always @(posedge clk ) begin
         if(rst)begin
             stage<=0;
             cnt<=0;
+            total_difference<=0;
         end else if(stage==0)begin
             //グラフの生成とパスの初期化
             path[cnt]<=cnt;
@@ -51,7 +55,10 @@ module tsp (
                 v2<=rnd_val%62+1;   //todo
                 cnt<=cnt+1;
             end else begin
-                if(v1!=v2 && v1+1!=v2 && v1!=v2+1)begin
+                if(v1==v2 || v1+1==v2 || v2+1==v1)begin
+                    v2<=rnd_val%62+1;   //todo
+                    cnt<=cnt+1;
+                end else begin
                     x1<=xs[path[v1-1]]; y1<=ys[path[v1-1]];
                     x2<=xs[path[v1]]; y2<=ys[path[v1]];
                     x3<=xs[path[v1+1]]; y3<=ys[path[v1+1]];
@@ -61,9 +68,6 @@ module tsp (
                     stage<=2;
                     cnt<=0;
                     rst_swap<=1;
-                end else begin
-                    v2<=rnd_val%62+1;   //todo
-                    cnt<=cnt+1;
                 end
             end
         end else if(stage==2)begin
@@ -73,6 +77,7 @@ module tsp (
                 if(should_swap)begin
                     path[v1]<=path[v2];
                     path[v2]<=path[v1];
+                    total_difference+=swap_difference;
                 end
                 stage<=1;
                 cnt<=0;

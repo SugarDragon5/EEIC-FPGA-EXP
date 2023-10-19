@@ -8,13 +8,15 @@ module checkswap (
     x5,y5,
     x6,y6,
     res,
-    complete
+    complete,
+    difference
 );
     input clk;
     input rst;
     input [31:0] x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6;
     output reg res;
     output reg complete;
+    output reg [31:0] difference;
     reg [10:0] cnt;
     reg [31:0] inx1,iny1,inx2,iny2;
     wire [31:0] out;
@@ -27,6 +29,7 @@ module checkswap (
             cnt<=0;
             sum1<=0;
             sum2<=0;
+            difference<=0;
         end
         else if(complete==0)begin
             if(cnt==0)begin
@@ -82,6 +85,7 @@ module checkswap (
                 if(sum1>sum2)res<=1;
                 else res<=0;
                 complete<=1;
+                difference<=sum1-sum2;
             end
             cnt<=cnt+1;
         end
