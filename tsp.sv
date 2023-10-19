@@ -46,10 +46,12 @@ module tsp (
         end else if(stage==1)begin
             if(cnt==0)begin
                 v1<=rnd_val%62+1;   //todo
+                cnt<=cnt+1;
             end else if(cnt==1) begin
                 v2<=rnd_val%62+1;   //todo
-            end else if(cnt==2)begin
-                if(v1!=v2)begin
+                cnt<=cnt+1;
+            end else begin
+                if(v1!=v2 && v1+1!=v2 && v1!=v2+1)begin
                     x1<=xs[path[v1-1]]; y1<=ys[path[v1-1]];
                     x2<=xs[path[v1]]; y2<=ys[path[v1]];
                     x3<=xs[path[v1+1]]; y3<=ys[path[v1+1]];
@@ -60,10 +62,10 @@ module tsp (
                     cnt<=0;
                     rst_swap<=1;
                 end else begin
-                    cnt<=0;
+                    v2<=rnd_val%62+1;   //todo
+                    cnt<=cnt+1;
                 end
             end
-            cnt<=cnt+1;
         end else if(stage==2)begin
             if(rst_swap)begin
                 rst_swap<=0;

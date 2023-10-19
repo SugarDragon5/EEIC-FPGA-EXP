@@ -36,7 +36,7 @@ initial begin
         $display("%d, %d",xs[i],ys[i]);
     end
     for(cnt=1;cnt<=101;cnt++) begin
-        repeat(10000) @(posedge clk);
+        repeat(100) @(posedge clk);
         $display("path%d=[",cnt);
         for(i=0;i<64;i++)begin
             $write("%d,",path[i]);
