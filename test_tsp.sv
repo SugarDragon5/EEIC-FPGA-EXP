@@ -25,19 +25,23 @@ initial begin
 end
 
 integer i;
-
+integer cnt;
 initial begin
     #1 rst_n<=1'bx;clk<=1'b0;
     #(CLK_PERIOD*3) rst_n<=1;
     #(CLK_PERIOD*3) rst_n<=0;
-    repeat(10000) @(posedge clk);
+    repeat(1000) @(posedge clk);
     $display("xs, ys");
     for(i=0;i<64;i++)begin
         $display("%d, %d",xs[i],ys[i]);
     end
-    $display("path");
-    for(i=0;i<64;i++)begin
-        $display("%d",path[i]);
+    for(cnt=1;cnt<=101;cnt++) begin
+        repeat(10000) @(posedge clk);
+        $display("path%d=[",cnt);
+        for(i=0;i<64;i++)begin
+            $write("%d,",path[i]);
+        end
+        $write("\n]\n");
     end
     $finish(2);
 end
