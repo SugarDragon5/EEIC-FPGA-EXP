@@ -1,4 +1,3 @@
-`include "xorshift.v"
 module graph
 (
     rst,clk,xs,ys,complete

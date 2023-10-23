@@ -1,4 +1,3 @@
-`include "distance.v"
 module checkswap (
     clk,rst,
     x1,y1,
