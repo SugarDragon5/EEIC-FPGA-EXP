@@ -1,11 +1,12 @@
 `include "graph.sv"
 `include "swap.sv"
 module tsp (
-    clk,rst,xs,ys,path
+    clk,rst,xs,ys,path,performance
 );
     input clk,rst;
     output wire [31:0] xs[63:0],ys[63:0];
     output reg [31:0] path[63:0];
+    output wire [31:0] performance;
     wire complete_graph_gen;
     reg [31:0] stage;
     reg [31:0] cnt;
@@ -22,6 +23,7 @@ module tsp (
     reg should_swap, complete_check_swap;
     reg [31:0] swap_difference;
     reg [31:0] total_difference;
+    assign performance=total_difference;
     checkswap checkswap1(
         .clk(clk),.rst(rst_swap),
         .x1(x1),.y1(y1),
