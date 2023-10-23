@@ -8,16 +8,16 @@ module seg7 (
     function [6:0] num_to_seg7(input [3:0] in);
     begin
         case(in)
-        0: num_to_seg7=7'b0000001;
-        1: num_to_seg7=7'b1001111;
-        2: num_to_seg7=7'b1010010;
-        3: num_to_seg7=7'b0000110;
-        4: num_to_seg7=7'b1001101;
-        5: num_to_seg7=7'b0100100;
-        6: num_to_seg7=7'b0100000;
-        7: num_to_seg7=7'b0001101;
+        0: num_to_seg7=7'b1000000;
+        1: num_to_seg7=7'b1111001;
+        2: num_to_seg7=7'b0100100;
+        3: num_to_seg7=7'b0110000;
+        4: num_to_seg7=7'b0011001;
+        5: num_to_seg7=7'b0010010;
+        6: num_to_seg7=7'b0000010;
+        7: num_to_seg7=7'b1011000;
         8: num_to_seg7=7'b0000000;
-        9: num_to_seg7=7'b0000100;
+        9: num_to_seg7=7'b0010000;
         default: num_to_seg7=7'b1111111;
         endcase
     end

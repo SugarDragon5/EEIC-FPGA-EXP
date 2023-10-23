@@ -18,10 +18,10 @@ module distance (x1,y1,x2,y2,res);
     function [31:0] manhattan_distance (input [31:0] x1, input[31:0] y1, input [31:0] x2, input [31:0] y2);
     begin
         manhattan_distance = 0;
-        if(x1>x2) manhattan_distance+=x1-x2;
-        else manhattan_distance+=x2-x1;
-        if(y1>y2) manhattan_distance+=y1-y2;
-        else manhattan_distance+=y2-y1;
+        if(x1>x2) manhattan_distance=manhattan_distance+x1-x2;
+        else manhattan_distance=manhattan_distance+x2-x1;
+        if(y1>y2) manhattan_distance=manhattan_distance+y1-y2;
+        else manhattan_distance=manhattan_distance+y2-y1;
     end
     endfunction
 

@@ -1,5 +1,3 @@
-`include "graph.sv"
-`include "swap.sv"
 module tsp (
     clk,rst,xs,ys,path,performance
 );
@@ -79,7 +77,7 @@ module tsp (
                 if(should_swap)begin
                     path[v1]<=path[v2];
                     path[v2]<=path[v1];
-                    total_difference+=swap_difference;
+                    total_difference=total_difference+swap_difference;
                 end
                 stage<=1;
                 cnt<=0;
