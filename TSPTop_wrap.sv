@@ -28,7 +28,7 @@ module TSPTop_wrap(
     seg7 seg2(.in(digits[2]),.out(HEX2));
     seg7 seg3(.in(digits[3]),.out(HEX3));
     seg7 seg4(.in(digits[4]),.out(HEX4));
-    seg7 seg5(.in(digits[5]),.out(HEX4));
+    seg7 seg5(.in(digits[5]),.out(HEX5));
     always @(posedge clk) begin
         cnt<=cnt+1;
         if(!cnt[24:0])begin
