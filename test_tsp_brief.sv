@@ -1,4 +1,3 @@
-`include "tsp.sv"
 `default_nettype none
 
 module tb_tsp;

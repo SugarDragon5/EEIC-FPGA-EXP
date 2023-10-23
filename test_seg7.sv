@@ -1,4 +1,3 @@
-`include "seg7.sv"
 `default_nettype none
 
 module tb_seg7;

@@ -1,4 +1,3 @@
-`include "distance.v"
 `default_nettype none
 
 module tb_distance;

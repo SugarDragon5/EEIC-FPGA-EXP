@@ -1,4 +1,3 @@
-`include "swap.sv"
 `default_nettype none
 
 module tb_swap;
