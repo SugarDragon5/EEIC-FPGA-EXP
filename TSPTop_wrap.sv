@@ -1,4 +1,5 @@
-module TSPTop_wrap(	input CLOCK_50,
+module TSPTop_wrap(
+    input clk,
 	input [1:0]  SW,
 	output [3:0] LEDR,
 	output [6:0] HEX0,
@@ -6,67 +7,37 @@ module TSPTop_wrap(	input CLOCK_50,
 	output [6:0] HEX2,
 	output [6:0] HEX3,
 	output [6:0] HEX4,
+	output [6:0] HEX5,
 	input 	     rst    
 );
+    reg [31:0] cnt;
     wire [31:0] xs[63:0],ys[63:0];
     wire [31:0] performance;
     wire [31:0] path[63:0];
     tsp tsp1(
-        .clk(CLOCK_50),
+        .clk(clk),
         .rst(rst),
         .xs(xs),
         .ys(ys),
         .path(path),
         .performance(performance)
     );
-    //1の位
-    wire [3:0] digit1;
-    function [3:0] calc_digit1(input [31:0] performance);
-        calc_digit1=performance%10;
-    endfunction
-    assign digit1=calc_digit1(performance);
-    seg7 seg70(
-        .in(digit1),
-        .out(HEX0)
-    );
-    //10の位
-    wire [3:0] digit10;
-    function [3:0] calc_digit10(input [31:0] performance);
-        calc_digit10=performance/10%10;
-    endfunction
-    assign digit10=calc_digit10(performance);
-    seg7 seg71(
-        .in(digit10),
-        .out(HEX1)
-    );
-    //100の位
-    wire [3:0] digit100;
-    function [3:0] calc_digit100(input [31:0] performance);
-        calc_digit100=performance/100%10;
-    endfunction
-    assign digit100=calc_digit100(performance);
-    seg7 seg72(
-        .in(digit100),
-        .out(HEX2)
-    );
-    //1000の位
-    wire [3:0] digit1000;
-    function [3:0] calc_digit1000(input [31:0] performance);
-        calc_digit1000=performance/1000%10;
-    endfunction
-    assign digit1000=calc_digit1000(performance);
-    seg7 seg73(
-        .in(digit1000),
-        .out(HEX3)
-    );
-    //10000の位
-    wire [3:0] digit10000;
-    function [3:0] calc_digit10000(input [31:0] performance);
-        calc_digit10000=performance/10000%10;
-    endfunction
-    assign digit10000=calc_digit10000(performance);
-    seg7 seg74(
-        .in(digit10000),
-        .out(HEX4)
-    );   
+    reg [3:0] digits[5:0];
+    seg7 seg0(.in(digits[0]),.out(HEX0));
+    seg7 seg1(.in(digits[1]),.out(HEX1));
+    seg7 seg2(.in(digits[2]),.out(HEX2));
+    seg7 seg3(.in(digits[3]),.out(HEX3));
+    seg7 seg4(.in(digits[4]),.out(HEX4));
+    seg7 seg5(.in(digits[5]),.out(HEX4));
+    always @(posedge clk) begin
+        cnt<=cnt+1;
+        if(!cnt[24:0])begin
+            digits[0]<=performance%10;
+            digits[1]<=performance/10%10;
+            digits[2]<=performance/100%10;
+            digits[3]<=performance/1000%10;
+            digits[4]<=performance/10000%10;
+            digits[5]<=performance/100000%10;
+        end
+    end
 endmodule

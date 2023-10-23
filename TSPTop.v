@@ -6,6 +6,7 @@ module TSPTop(	input CLOCK_50,
 	output [6:0] HEX2,
 	output [6:0] HEX3,
 	output [6:0] HEX4,
+	output [6:0] HEX5,
 	input 	     nrst    
 );
     wire rst;
@@ -14,7 +15,7 @@ module TSPTop(	input CLOCK_50,
     endfunction
     assign rst=inv(nrst);
     TSPTop_wrap top(
-        .CLOCK_50(CLOCK_50),
+        .clk(CLOCK_50),
         .SW(SW),
         .LEDR(LEDR),
         .HEX0(HEX0),
@@ -22,6 +23,7 @@ module TSPTop(	input CLOCK_50,
         .HEX2(HEX2),
         .HEX3(HEX3),
         .HEX4(HEX4),
+        .HEX5(HEX5),
         .rst(rst)
     );
 endmodule
