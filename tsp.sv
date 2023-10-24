@@ -86,7 +86,7 @@ module tsp (
                     //v1を取得
                     //v1の条件は、v1-1, v1, v1+1がロックされていないこと
                     if(locked[rand_val[i][5:0]-1]==-1 && locked[rand_val[i][5:0]]==-1 && locked[rand_val[i][5:0]+1]==-1)begin
-                        v1[i]<=rand_val[i][5:0];   //todo
+                        v1[i]<=rand_val[i][5:0];
                         state[i]<=1;
                     end
                 end else if(state[i]==1)begin
@@ -94,7 +94,7 @@ module tsp (
                     //v2の条件は、v2-1, v2, v2+1がロックされていないことと、v1とv2が隣接していないこと
                     if(locked[rand_val[i][5:0]-1]==-1 && locked[rand_val[i][5:0]]==-1 && locked[rand_val[i][5:0]+1]==-1)begin
                         if(v1[i]!=rand_val[i][5:0] && v1[i]+1!=rand_val[i][5:0] && v1[i]!=rand_val[i][5:0]+1)begin
-                            v2[i]<=rand_val[i][5:0];   //todo
+                            v2[i]<=rand_val[i][5:0];
                             state[i]<=2;
                         end
                     end
