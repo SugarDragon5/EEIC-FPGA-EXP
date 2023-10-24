@@ -11,9 +11,9 @@ module TSPTop_wrap(
 	input 	     rst    
 );
     reg [31:0] cnt;
-    wire [31:0] xs[63:0],ys[63:0];
+    wire [7:0] xs[63:0],ys[63:0];
     wire [31:0] performance;
-    wire [31:0] path[63:0];
+    wire [5:0] path[63:0];
     tsp tsp1(
         .clk(clk),
         .rst(rst),

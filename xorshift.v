@@ -1,6 +1,7 @@
-module xorshift (rst, clk, res);
+module xorshift (rst, clk, seed, res);
     input rst;
     input clk;
+    input [31:0] seed;
     output [31:0] res;
     
     reg [31:0] x;
@@ -13,7 +14,7 @@ module xorshift (rst, clk, res);
             x<=123456789;
             y<=362436069;
             z<=521288629;
-            w<=88675123;
+            w<=seed;
         end else begin
             x<=y;
             y<=z;

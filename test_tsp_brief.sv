@@ -3,8 +3,8 @@
 module tb_tsp;
 reg clk;
 reg rst_n;
-wire [31:0] xs[63:0],ys[63:0];
-wire [31:0] path[63:0];
+wire [7:0] xs[63:0],ys[63:0];
+wire [5:0] path[63:0];
 
 tsp tsp1
 (
@@ -40,7 +40,7 @@ initial begin
         $write("%d,",ys[i]);
     end
     $write("\n]\n");
-    repeat(2000000)@(posedge clk);
+    repeat(20000)@(posedge clk);
     $display("path=[");
     for(i=0;i<64;i++)begin
         $write("%d,",path[i]);
