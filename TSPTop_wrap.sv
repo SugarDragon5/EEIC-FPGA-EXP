@@ -32,12 +32,12 @@ module TSPTop_wrap(
     always @(posedge clk) begin
         cnt<=cnt+1;
         if(!cnt[24:0])begin
-            digits[0]<=performance%10;
-            digits[1]<=performance/10%10;
-            digits[2]<=performance/100%10;
-            digits[3]<=performance/1000%10;
-            digits[4]<=performance/10000%10;
-            digits[5]<=performance/100000%10;
+            digits[0]<=performance[3:0];
+            digits[1]<=performance[7:4];
+            digits[2]<=performance[11:8];
+            digits[3]<=performance[15:12];
+            digits[4]<=performance[19:16];
+            digits[5]<=performance[23:20];
         end
     end
 endmodule
