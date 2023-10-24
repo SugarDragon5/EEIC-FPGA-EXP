@@ -40,7 +40,7 @@ initial begin
         $write("%d,",ys[i]);
     end
     $write("\n]\n");
-    repeat(20000)@(posedge clk);
+    repeat(200000)@(posedge clk);
     $display("path=[");
     for(i=0;i<64;i++)begin
         $write("%d,",path[i]);
