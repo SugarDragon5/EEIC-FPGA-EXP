@@ -4,8 +4,8 @@ module graph
 );
     input rst;
     input clk;
-    output reg [31:0] xs[63:0];
-    output reg [31:0] ys[63:0];
+    output reg [7:0] xs[63:0];
+    output reg [7:0] ys[63:0];
     output reg complete;
     wire [31:0] rand_val;
     reg [10:0] cnt;

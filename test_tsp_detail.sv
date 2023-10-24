@@ -3,8 +3,8 @@
 module tb_tsp;
 reg clk;
 reg rst_n;
-wire [31:0] xs[63:0],ys[63:0];
-wire [31:0] path[63:0];
+wire [7:0] xs[63:0],ys[63:0];
+wire [5:0] path[63:0];
 
 tsp tsp1
 (

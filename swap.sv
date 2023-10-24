@@ -12,12 +12,12 @@ module checkswap (
 );
     input clk;
     input rst;
-    input [31:0] x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6;
+    input [7:0] x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6;
     output reg res;
     output reg complete;
     output reg [31:0] difference;
     reg [10:0] cnt;
-    reg [31:0] inx1,iny1,inx2,iny2;
+    reg [7:0] inx1,iny1,inx2,iny2;
     wire [31:0] out;
     reg [31:0] sum1,sum2;
     distance calc(.x1(inx1),.y1(iny1),.x2(inx2),.y2(iny2),.res(out));

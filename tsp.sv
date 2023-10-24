@@ -3,9 +3,9 @@ module tsp (
 );
     input clk,rst;
     //頂点座標
-    output wire [31:0] xs[63:0],ys[63:0];
+    output wire [7:0] xs[63:0],ys[63:0];
     //経路
-    output reg [31:0] path[63:0];
+    output reg [5:0] path[63:0];
     output wire [31:0] performance;
     //グラフ情報
     wire is_completed_graphgen;
@@ -19,16 +19,16 @@ module tsp (
     //ソルバ変数
     parameter PARALLEL_NUM = 5;
     reg [31:0] state[PARALLEL_NUM];
-    reg [31:0] v1[PARALLEL_NUM],v2[PARALLEL_NUM];
+    reg [5:0] v1[PARALLEL_NUM],v2[PARALLEL_NUM];
     reg [31:0] rand_val[PARALLEL_NUM];
     reg [31:0] rand_seed[PARALLEL_NUM];
     ////(x1,y1)->v1(x2,y2)->(x3,y3) (x4,y4)->v2(x5,y5)->(x6,y6)
-    reg [31:0] x1[PARALLEL_NUM],y1[PARALLEL_NUM];
-    reg [31:0] x2[PARALLEL_NUM],y2[PARALLEL_NUM];
-    reg [31:0] x3[PARALLEL_NUM],y3[PARALLEL_NUM];
-    reg [31:0] x4[PARALLEL_NUM],y4[PARALLEL_NUM];
-    reg [31:0] x5[PARALLEL_NUM],y5[PARALLEL_NUM];
-    reg [31:0] x6[PARALLEL_NUM],y6[PARALLEL_NUM];
+    reg [7:0] x1[PARALLEL_NUM],y1[PARALLEL_NUM];
+    reg [7:0] x2[PARALLEL_NUM],y2[PARALLEL_NUM];
+    reg [7:0] x3[PARALLEL_NUM],y3[PARALLEL_NUM];
+    reg [7:0] x4[PARALLEL_NUM],y4[PARALLEL_NUM];
+    reg [7:0] x5[PARALLEL_NUM],y5[PARALLEL_NUM];
+    reg [7:0] x6[PARALLEL_NUM],y6[PARALLEL_NUM];
     reg reset_swap[PARALLEL_NUM];
     reg should_swap[PARALLEL_NUM], complete_check_swap[PARALLEL_NUM];
     reg [31:0] swap_difference[PARALLEL_NUM];
@@ -85,16 +85,16 @@ module tsp (
                 if(state[i]==0)begin
                     //v1を取得
                     //v1の条件は、v1-1, v1, v1+1がロックされていないこと
-                    if(locked[rand_val[i]%62]==-1 && locked[rand_val[i]%62+1]==-1 && locked[rand_val[i]%62+2]==-1)begin
-                        v1[i]<=rand_val[i]%62+1;   //todo
+                    if(locked[rand_val[i][5:0]-1]==-1 && locked[rand_val[i][5:0]]==-1 && locked[rand_val[i][5:0]+1]==-1)begin
+                        v1[i]<=rand_val[i][5:0];   //todo
                         state[i]<=1;
                     end
                 end else if(state[i]==1)begin
                     //v2を取得
                     //v2の条件は、v2-1, v2, v2+1がロックされていないことと、v1とv2が隣接していないこと
-                    if(locked[rand_val[i]%62]==-1 && locked[rand_val[i]%62+1]==-1 && locked[rand_val[i]%62+2]==-1)begin
-                        if(v1[i]!=rand_val[i]%62+1 && v1[i]+1!=rand_val[i]%62+1 && v1[i]!=rand_val[i]%62+2)begin
-                            v2[i]<=rand_val[i]%62+1;   //todo
+                    if(locked[rand_val[i][5:0]-1]==-1 && locked[rand_val[i][5:0]]==-1 && locked[rand_val[i][5:0]+1]==-1)begin
+                        if(v1[i]!=rand_val[i][5:0] && v1[i]+1!=rand_val[i][5:0] && v1[i]!=rand_val[i][5:0]+1)begin
+                            v2[i]<=rand_val[i][5:0];   //todo
                             state[i]<=2;
                         end
                     end

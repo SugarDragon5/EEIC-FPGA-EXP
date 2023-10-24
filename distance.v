@@ -1,8 +1,8 @@
 module distance (x1,y1,x2,y2,res);
-    input [31:0] x1;
-    input [31:0] y1;
-    input [31:0] x2;
-    input [31:0] y2;
+    input [7:0] x1;
+    input [7:0] y1;
+    input [7:0] x2;
+    input [7:0] y2;
     output [31:0] res;
     
     wire [31:0] distance_sq;
@@ -11,11 +11,11 @@ module distance (x1,y1,x2,y2,res);
     wire [31:0] b;
     wire [31:0] c;
 
-    function [31:0] square_distance (input [31:0] x1, input[31:0] y1, input [31:0] x2, input [31:0] y2);
+    function [31:0] square_distance (input [7:0] x1, input[7:0] y1, input [7:0] x2, input [7:0] y2);
         square_distance = (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2);
     endfunction
 
-    function [31:0] manhattan_distance (input [31:0] x1, input[31:0] y1, input [31:0] x2, input [31:0] y2);
+    function [31:0] manhattan_distance (input [7:0] x1, input[7:0] y1, input [7:0] x2, input [7:0] y2);
     begin
         manhattan_distance = 0;
         if(x1>x2) manhattan_distance=manhattan_distance+x1-x2;
