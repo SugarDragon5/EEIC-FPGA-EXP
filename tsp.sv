@@ -38,7 +38,7 @@ module tsp (
     reg should_swap_sol1[SOL1_PARALLEL_NUM], complete_check_swap_sol1[SOL1_PARALLEL_NUM];
     reg [31:0] swap_difference_sol1[SOL1_PARALLEL_NUM];
     generate
-        for(j=0;j<SOL1_PARALLEL_NUM;j++)begin
+        for(j=0;j<SOL1_PARALLEL_NUM;j++)begin: gen1
             xorshift xs(.rst(rst),.clk(clk),.seed(rand_seed_sol1[j]),.res(rand_val_sol1[j]));
             checkswap cs(
                 .clk(clk),.rst(reset_swap_sol1[j]),
@@ -69,7 +69,7 @@ module tsp (
     reg should_swap_sol2[SOL2_PARALLEL_NUM], complete_check_swap_sol2[SOL2_PARALLEL_NUM];
     reg [31:0] swap_difference_sol2[SOL2_PARALLEL_NUM];
     generate
-        for(j=0;j<SOL2_PARALLEL_NUM;j++)begin
+        for(j=0;j<SOL2_PARALLEL_NUM;j++)begin: gen2
             xorshift xs(.rst(rst),.clk(clk),.seed(rand_seed_sol2[j]),.res(rand_val_sol2[j]));
             checkswap_adjacent csa(
                 .clk(clk),.rst(reset_swap_sol2[j]),
