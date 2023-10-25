@@ -27,7 +27,7 @@ TSPTop_wrap tp
 	.rst(rst_n)
 );
 
-localparam CLK_PERIOD = 3;
+localparam CLK_PERIOD = 10;
 always #(CLK_PERIOD/2) clk=~clk;
 
 initial begin
@@ -38,9 +38,9 @@ integer i;
 initial begin
     #1 rst_n<=1'bx;clk<=1'b0;
     for(i=0;i<10;i++)begin
-        #(CLK_PERIOD*3) rst_n<=1;
-        #(CLK_PERIOD*3) rst_n<=0;
-        repeat(100000) @(posedge clk);
+        #(i+100) rst_n<=1;
+        #(i+100) rst_n<=0;
+        repeat(10000) @(posedge clk);
     end
     $finish(2);
 end
