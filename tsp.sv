@@ -84,20 +84,18 @@ module tsp (
         end
     endgenerate
     assign performance=total_difference;
-    initial begin
-        rand_seed_sol1[0]<=3141592;
-        rand_seed_sol1[1]<=65358979;
-        rand_seed_sol1[2]<=32384626;
-        rand_seed_sol1[3]<=43383279;
-        rand_seed_sol1[4]<=50288419;
-        rand_seed_sol2[0]<=71693993;
-        rand_seed_sol2[1]<=75105820;
-    end
     always @(posedge clk ) begin
         if(rst)begin
             //リセット入力
             phase<=0;
             total_difference<=0;
+            rand_seed_sol1[0]<=3141592;
+            rand_seed_sol1[1]<=65358979;
+            rand_seed_sol1[2]<=32384626;
+            rand_seed_sol1[3]<=43383279;
+            rand_seed_sol1[4]<=50288419;
+            rand_seed_sol2[0]<=71693993;
+            rand_seed_sol2[1]<=75105820;
         end else if(phase==0)begin
             //グラフの生成とパスの初期化
             if(is_completed_graphgen)begin
