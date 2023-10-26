@@ -4,10 +4,10 @@
 module tb_vga_graph;
 reg clk;
 reg rst_n;
-reg [7:0] xs[63:0];
-reg [7:0] ys[63:0];
-reg [5:0] path[63:0];
-wire [15:0] R[255:0][255:0],G[255:0][255:0],B[255:0][255:0];
+reg [63:0][7:0] xs;
+reg [63:0][7:0] ys;
+reg [63:0][5:0] path;
+wire [15:0] R,G,B;
 
 VGAGraph vga_graph_0
 (
@@ -30,7 +30,7 @@ initial begin
 end
 integer i;
 initial begin
-    #1 rst_n<=1'bx;clk<=1'bx;
+    #1 rst_n<=1'bx;clk<=1'b0;
     #(CLK_PERIOD*3) rst_n<=1;
     #(CLK_PERIOD*3) rst_n<=0;clk<=0;
     for(i=0;i<64;i=i+1) begin
@@ -38,9 +38,6 @@ initial begin
         ys[i]=(i*27)%256;
         path[i]=i;
     end
-    repeat(5) @(posedge clk);
-    rst_n<=1;
-    @(posedge clk);
     repeat(70000) @(posedge clk);
     $finish(2);
 end
