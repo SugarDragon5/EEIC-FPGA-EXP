@@ -1,3 +1,4 @@
+`include "slowclk.sv"
 `include "xorshift.v"
 `include "distance.v"
 `include "seg7.sv"

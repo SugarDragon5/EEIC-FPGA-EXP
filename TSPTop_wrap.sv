@@ -14,8 +14,14 @@ module TSPTop_wrap(
     wire [7:0] xs[63:0],ys[63:0];
     wire [31:0] performance;
     wire [5:0] path[63:0];
-    tsp tsp1(
+    wire sclk;
+    slowclk slowclk1(
         .clk(clk),
+        .sw(SW),
+        .out(sclk)
+    );
+    tsp tsp1(
+        .clk(sclk),
         .rst(rst),
         .xs(xs),
         .ys(ys),
