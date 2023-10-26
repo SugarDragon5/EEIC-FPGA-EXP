@@ -41,7 +41,7 @@ module checkswap (
                 iny1<=y2;
                 inx2<=x3;
                 iny2<=y3;
-                sum1<=sum1+out; //(v1,v2)
+                sum1<=out; //(v1,v2)
             end else if(cnt==2)begin
                 inx1<=x4;
                 iny1<=y4;

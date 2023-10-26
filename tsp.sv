@@ -96,17 +96,26 @@ module tsp (
             rand_seed_sol1[4]<=50288419;
             rand_seed_sol2[0]<=71693993;
             rand_seed_sol2[1]<=75105820;
+            for(i=0;i<SOL1_PARALLEL_NUM;i++)begin
+                state_sol1[i]<=0;
+                reset_swap_sol1[i]<=1;
+            end
+            for(i=0;i<SOL2_PARALLEL_NUM;i++)begin
+                state_sol2[i]<=0;
+                reset_swap_sol2[i]<=1;
+            end
         end else if(phase==0)begin
             //グラフの生成とパスの初期化
             if(is_completed_graphgen)begin
                 phase<=1;
             end
-
             for(i=0;i<SOL1_PARALLEL_NUM;i++)begin
                 state_sol1[i]<=0;
+                reset_swap_sol1[i]<=1;
             end
             for(i=0;i<SOL2_PARALLEL_NUM;i++)begin
                 state_sol2[i]<=0;
+                reset_swap_sol2[i]<=1;
             end
             for(i=0;i<64;i++)begin
                 path[i]<=i;
@@ -159,6 +168,7 @@ module tsp (
                         if(locked[v2_sol1[i]]==i*2)locked[v2_sol1[i]]<=-1;
                         if(locked[v2_sol1[i]+1]==i*2)locked[v2_sol1[i]+1]<=-1;
                     end else begin
+                        //ロックに成功しているので、リセットスイッチを切って、計算開始
                         state_sol1[i]<=4;
                         reset_swap_sol1[i]<=0;
                     end
@@ -212,6 +222,7 @@ module tsp (
                         if(locked[v_sol2[i]+2]==i*2+1)locked[v_sol2[i]+2]<=-1;
                         if(locked[v_sol2[i]+3]==i*2+1)locked[v_sol2[i]+3]<=-1;
                     end else begin
+                        //ロックに成功しているので、リセットスイッチを切って、計算開始
                         state_sol2[i]<=3;
                         reset_swap_sol2[i]<=0;
                     end
