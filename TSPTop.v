@@ -13,9 +13,19 @@ module TSPTop(	input CLOCK_50,
     function inv(input in);
         inv=~nrst;
     endfunction
+	 
+	 wire sclk;
+	 wire locked;
+	 pll pll1(
+		.refclk(CLOCK_50),   //  refclk.clk
+		.rst(0),      //   reset.reset
+		.outclk_0(sclk), // outclk0.clk
+		.locked(locked)    //  locked.export
+	);
+	 
     assign rst=inv(nrst);
     TSPTop_wrap top(
-        .clk(CLOCK_50),
+        .clk(sclk),
         .SW(SW),
         .LEDR(LEDR),
         .HEX0(HEX0),
@@ -26,4 +36,5 @@ module TSPTop(	input CLOCK_50,
         .HEX5(HEX5),
         .rst(rst)
     );
+
 endmodule
