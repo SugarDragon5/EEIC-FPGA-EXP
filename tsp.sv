@@ -35,8 +35,8 @@ module tsp (
     reg [7:0] x5_sol1[SOL1_PARALLEL_NUM],y5_sol1[SOL1_PARALLEL_NUM];
     reg [7:0] x6_sol1[SOL1_PARALLEL_NUM],y6_sol1[SOL1_PARALLEL_NUM];
     reg reset_swap_sol1[SOL1_PARALLEL_NUM];
-    reg should_swap_sol1[SOL1_PARALLEL_NUM], complete_check_swap_sol1[SOL1_PARALLEL_NUM];
-    reg [31:0] swap_difference_sol1[SOL1_PARALLEL_NUM];
+    wire should_swap_sol1[SOL1_PARALLEL_NUM], complete_check_swap_sol1[SOL1_PARALLEL_NUM];
+    wire [31:0] swap_difference_sol1[SOL1_PARALLEL_NUM];
     generate
         for(j=0;j<SOL1_PARALLEL_NUM;j++)begin: gen1
             xorshift xs(.rst(rst),.clk(clk),.seed(rand_seed_sol1[j]),.res(rand_val_sol1[j]));
@@ -66,8 +66,8 @@ module tsp (
     reg [7:0] x3_sol2[SOL2_PARALLEL_NUM],y3_sol2[SOL2_PARALLEL_NUM];
     reg [7:0] x4_sol2[SOL2_PARALLEL_NUM],y4_sol2[SOL2_PARALLEL_NUM];
     reg reset_swap_sol2[SOL2_PARALLEL_NUM];
-    reg should_swap_sol2[SOL2_PARALLEL_NUM], complete_check_swap_sol2[SOL2_PARALLEL_NUM];
-    reg [31:0] swap_difference_sol2[SOL2_PARALLEL_NUM];
+    wire should_swap_sol2[SOL2_PARALLEL_NUM], complete_check_swap_sol2[SOL2_PARALLEL_NUM];
+    wire [31:0] swap_difference_sol2[SOL2_PARALLEL_NUM];
     generate
         for(j=0;j<SOL2_PARALLEL_NUM;j++)begin: gen2
             xorshift xs(.rst(rst),.clk(clk),.seed(rand_seed_sol2[j]),.res(rand_val_sol2[j]));
