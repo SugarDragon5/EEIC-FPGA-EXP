@@ -15,10 +15,11 @@ module checkswap_adjacent (
     output reg complete;
     output reg [31:0] difference;
     reg [10:0] cnt;
-    reg [7:0] inx1,iny1,inx2,iny2;
-    wire [31:0] out;
+    reg [7:0] inx1,iny1,inx2,iny2,inx3,iny3,inx4,iny4;
+    wire [31:0] out1,out2;
     reg [31:0] sum1,sum2;
-    distance calc(.x1(inx1),.y1(iny1),.x2(inx2),.y2(iny2),.res(out));
+    distance calc1(.clk(clk),.x1(inx1),.y1(iny1),.x2(inx2),.y2(iny2),.res(out1));
+    distance calc2(.clk(clk),.x1(inx3),.y1(iny3),.x2(inx4),.y2(iny4),.res(out2));
     always @(posedge clk) begin
         if(rst)begin
             res<=0;
@@ -30,43 +31,45 @@ module checkswap_adjacent (
         end
         else if(complete==0)begin
             if(cnt==0)begin
+                //v1->v2 (path1)
                 inx1<=x1;
                 iny1<=y1;
                 inx2<=x2;
                 iny2<=y2;
+                //v1->v3 (path2)
+                inx3<=x1;
+                iny3<=y1;
+                inx4<=x3;
+                iny4<=y3;
             end else if(cnt==1)begin
+                //v2->v3 (path1)
                 inx1<=x2;
                 iny1<=y2;
                 inx2<=x3;
                 iny2<=y3;
-                sum1<=out; //(v1,v2)
+                //v3->v2 (path2)
+                inx3<=x3;
+                iny3<=y3;
+                inx4<=x2;
+                iny4<=y2;
             end else if(cnt==2)begin
+                //v3->v4 (path1)
                 inx1<=x3;
                 iny1<=y3;
                 inx2<=x4;
                 iny2<=y4;
-                sum1<=sum1+out; //(v2,v3)
-            end else if(cnt==3)begin
-                inx1<=x1;
-                iny1<=y1;
-                inx2<=x3;
-                iny2<=y3;
-                sum1<=sum1+out; //(v3,v4)
-            end else if(cnt==4)begin
-                inx1<=x3;
-                iny1<=y3;
-                inx2<=x2;
-                iny2<=y2;
-                sum2<=out; //(v1,v3)
-            end else if(cnt==5)begin
-                inx1<=x2;
-                iny1<=y2;
-                inx2<=x4;
-                iny2<=y4;
-                sum2<=sum2+out; //(v3,v2)
+                //v2->v4 (path2)
+                inx3<=x2;
+                iny3<=y2;
+                inx4<=x4;
+                iny4<=y4;
             end else if(cnt==6)begin
-                sum2<=sum2+out; //(v2,v4)
-            end else if(cnt==7)begin
+                sum1<=out1;
+                sum2<=out2;
+            end else if(cnt==7 || cnt==8)begin
+                sum1<=sum1+out1;
+                sum2<=sum2+out2;
+            end else if(cnt==9)begin
                 if(sum1>sum2)res<=1;
                 else res<=0;
                 complete<=1;

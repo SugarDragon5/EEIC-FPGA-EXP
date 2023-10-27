@@ -43,7 +43,7 @@ module TSPTop_wrap(
             digits[5]<='hF;
         end else begin
             cnt<=cnt+1;
-            if(!cnt[22:0])begin
+            if(!cnt[16:0])begin
                 digits[0]<=performance[3:0];
                 digits[1]<=performance[7:4];
                 digits[2]<=performance[11:8];
