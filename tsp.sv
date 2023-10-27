@@ -22,7 +22,7 @@ module tsp (
     integer i;
     genvar j;
     //非隣接点交換ソルバ変数
-    parameter SOL1_PARALLEL_NUM = 1;
+    parameter SOL1_PARALLEL_NUM = 2;
     reg [31:0] state_sol1[SOL1_PARALLEL_NUM];
     reg [5:0] v1_sol1[SOL1_PARALLEL_NUM],v2_sol1[SOL1_PARALLEL_NUM];
     reg [31:0] rand_val_sol1[SOL1_PARALLEL_NUM];
@@ -55,7 +55,7 @@ module tsp (
         end
     endgenerate
     //隣接頂点交換ソルバ
-    parameter SOL2_PARALLEL_NUM = 0;
+    parameter SOL2_PARALLEL_NUM = 1;
     reg [31:0] state_sol2[SOL2_PARALLEL_NUM];
     reg [5:0] v_sol2[SOL2_PARALLEL_NUM];
     reg [31:0] rand_val_sol2[SOL2_PARALLEL_NUM];
@@ -90,11 +90,11 @@ module tsp (
             phase<=0;
             total_difference<=0;
             rand_seed_sol1[0]<=3141592;
-            //rand_seed_sol1[1]<=65358979;
+            rand_seed_sol1[1]<=65358979;
             //rand_seed_sol1[2]<=32384626;
             //rand_seed_sol1[3]<=43383279;
             //rand_seed_sol1[4]<=50288419;
-            //rand_seed_sol2[0]<=71693993;
+            rand_seed_sol2[0]<=71693993;
             //rand_seed_sol2[1]<=75105820;
             for(i=0;i<SOL1_PARALLEL_NUM;i++)begin
                 state_sol1[i]<=0;
