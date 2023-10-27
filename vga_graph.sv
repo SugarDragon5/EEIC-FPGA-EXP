@@ -4,7 +4,7 @@ module VGAGraph (
     input clk,rst;
     input [63:0][7:0] xs,ys;
     input [63:0][5:0] path;
-    output reg [15:0] R,G,B;
+    output reg [7:0] R,G,B;
     reg [15:0] cnt;
     wire [7:0] X,Y;
     assign X=cnt[7:0];
@@ -24,17 +24,14 @@ module VGAGraph (
                     G<=0;
                     B<=0;
                 end
-                if(xs[path[i]]<=X&&X<=xs[path[i+1]]||xs[path[i+1]]<=X&&X<=xs[path[i]])begin
-                    if(ys[path[i]]<=Y&&Y<=ys[path[i+1]]||ys[path[i+1]]<=Y&&Y<=ys[path[i]])begin
-                        if(
-                            ((ys[path[i+1]]-ys[path[i]])*(X-xs[path[i]])-(xs[path[i+1]]-xs[path[i]])*(Y-ys[path[i]]))*((ys[path[i+1]]-ys[path[i]])*(X+1-xs[path[i]])-(xs[path[i+1]]-xs[path[i]])*(Y+1-ys[path[i]]))<=0 
-                            || ((ys[path[i+1]]-ys[path[i]])*(X+1-xs[path[i]])-(xs[path[i+1]]-xs[path[i]])*(Y-ys[path[i]]))*((ys[path[i+1]]-ys[path[i]])*(X-xs[path[i]])-(xs[path[i+1]]-xs[path[i]])*(Y+1-ys[path[i]]))<=0
-                        )begin
-                            R<=0;
-                            G<=0;
-                            B<={i,2'b00};
-                        end
-                    end
+                if(Y==ys[path[i]]&&(xs[path[i]]<=X&&X<=xs[path[i+1]]||xs[path[i+1]]<=X&&X<=xs[path[i]]))begin
+                    R<=0;
+                    G<=0;
+                    B<={i,2'b00};
+                end else if(X==xs[path[i+1]]&&(ys[path[i]]<=Y&&Y<=ys[path[i+1]]||ys[path[i+1]]<=Y&&Y<=ys[path[i]]))begin
+                    R<=0;
+                    G<=0;
+                    B<={i,2'b00};
                 end
             end
         end

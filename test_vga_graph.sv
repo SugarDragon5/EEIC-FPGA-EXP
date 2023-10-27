@@ -7,7 +7,7 @@ reg rst_n;
 reg [63:0][7:0] xs;
 reg [63:0][7:0] ys;
 reg [63:0][5:0] path;
-wire [15:0] R,G,B;
+wire [7:0] R,G,B;
 
 VGAGraph vga_graph_0
 (
