@@ -15,7 +15,7 @@ tsp tsp1
     .path (path)
 );
 
-localparam CLK_PERIOD = 5;
+localparam CLK_PERIOD = 10;
 always #(CLK_PERIOD/2) clk=~clk;
 
 initial begin
