@@ -1,7 +1,7 @@
 module TSPTop_wrap(
     input clk,
 	input [1:0]  SW,
-	output reg [3:0] LEDR,
+	output reg [9:0] LEDR,
 	output [6:0] HEX0,
 	output [6:0] HEX1,
 	output [6:0] HEX2,
@@ -54,14 +54,14 @@ module TSPTop_wrap(
                     digits[5]<=performance[23:20];
                 end
             end else begin
-                if(!cnt[20:0])begin
-                    LEDR<=cnt[26:21];
-                    digits[0]<=path[cnt[26:21]][3:0];
-                    digits[1]<={2'b0,path[cnt[26:21]][5:4]};
-                    digits[2]<='x;
-                    digits[3]<=path[cnt[26:21]+1][3:0];
-                    digits[4]<={2'b0,path[cnt[26:21]+1][5:4]};
-                    digits[5]<='x;
+                if(!cnt[22:0])begin
+                    LEDR<={4'b0,cnt[28:23]};
+                    digits[0]<=path[cnt[28:23]][3:0];
+                    digits[1]<={2'b0,path[cnt[28:23]][5:4]};
+                    digits[2]<=0;
+                    digits[3]<=path[cnt[28:23]+1][3:0];
+                    digits[4]<={2'b0,path[cnt[28:23]+1][5:4]};
+                    digits[5]<=0;
                 end
             end
         end
