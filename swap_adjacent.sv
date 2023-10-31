@@ -13,11 +13,11 @@ module checkswap_adjacent (
     input [7:0] x1,y1,x2,y2,x3,y3,x4,y4;
     output reg res;
     output reg complete;
-    output reg [31:0] difference;
+    output reg [18:0] difference;
     reg [10:0] cnt;
     reg [7:0] inx1,iny1,inx2,iny2,inx3,iny3,inx4,iny4;
-    wire [31:0] out1,out2;
-    reg [31:0] sum1,sum2;
+    wire [18:0] out1,out2;
+    reg [18:0] sum1,sum2;
     distance calc1(.clk(clk),.x1(inx1),.y1(iny1),.x2(inx2),.y2(iny2),.res(out1));
     distance calc2(.clk(clk),.x1(inx3),.y1(iny3),.x2(inx4),.y2(iny4),.res(out2));
     always @(posedge clk) begin

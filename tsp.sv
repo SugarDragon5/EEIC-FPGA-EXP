@@ -6,7 +6,7 @@ module tsp (
     output wire [7:0] xs[63:0],ys[63:0];
     //経路
     output reg [5:0] path[63:0];
-    output wire [31:0] performance;
+    output wire [18:0] performance;
     //グラフ情報
     wire is_completed_graphgen;
     graph graph(
@@ -16,7 +16,7 @@ module tsp (
     );
     //状況変数
     reg [31:0] phase;
-    reg [31:0] total_difference;
+    reg [18:0] total_difference;
     reg [31:0] locked[63:0];
     //カウンタ変数
     integer i;
@@ -36,7 +36,7 @@ module tsp (
     reg [7:0] x6_sol1[SOL1_PARALLEL_NUM],y6_sol1[SOL1_PARALLEL_NUM];
     reg reset_swap_sol1[SOL1_PARALLEL_NUM];
     wire should_swap_sol1[SOL1_PARALLEL_NUM], complete_check_swap_sol1[SOL1_PARALLEL_NUM];
-    wire [31:0] swap_difference_sol1[SOL1_PARALLEL_NUM];
+    wire [18:0] swap_difference_sol1[SOL1_PARALLEL_NUM];
     generate
         for(j=0;j<SOL1_PARALLEL_NUM;j++)begin: gen1
             xorshift xs(.rst(rst),.clk(clk),.seed(rand_seed_sol1[j]),.res(rand_val_sol1[j]));
@@ -67,7 +67,7 @@ module tsp (
     reg [7:0] x4_sol2[SOL2_PARALLEL_NUM],y4_sol2[SOL2_PARALLEL_NUM];
     reg reset_swap_sol2[SOL2_PARALLEL_NUM];
     wire should_swap_sol2[SOL2_PARALLEL_NUM], complete_check_swap_sol2[SOL2_PARALLEL_NUM];
-    wire [31:0] swap_difference_sol2[SOL2_PARALLEL_NUM];
+    wire [18:0] swap_difference_sol2[SOL2_PARALLEL_NUM];
     generate
         for(j=0;j<SOL2_PARALLEL_NUM;j++)begin: gen2
             xorshift xs(.rst(rst),.clk(clk),.seed(rand_seed_sol2[j]),.res(rand_val_sol2[j]));

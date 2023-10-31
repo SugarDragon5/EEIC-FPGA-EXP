@@ -12,7 +12,7 @@ module TSPTop_wrap(
 );
     reg [31:0] cnt;
     wire [7:0] xs[63:0],ys[63:0];
-    wire [31:0] performance;
+    wire [18:0] performance;
     wire [5:0] path[63:0];
     tsp tsp1(
         .clk(clk),

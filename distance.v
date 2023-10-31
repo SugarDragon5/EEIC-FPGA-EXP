@@ -6,15 +6,15 @@ module distance (clk,x1,y1,x2,y2,complete,res);
     input [7:0] x2;
     input [7:0] y2;
     output reg complete;
-    output reg [31:0] res;
+    output reg [18:0] res;
     
-    reg [31:0] xd,yd;
-    reg [31:0] distance_sq1;
-    reg [31:0] distance_sq2;
-    reg [31:0] distance_sq3;
-    reg [31:0] distance_mh;
-    reg [31:0] a;
-    reg [31:0] b;
+    reg [18:0] xd,yd;
+    reg [18:0] distance_sq1;
+    reg [18:0] distance_sq2;
+    reg [18:0] distance_sq3;
+    reg [18:0] distance_mh;
+    reg [18:0] a;
+    reg [18:0] b;
 
     always @(posedge clk)begin
         //クロック1: 差分計算
