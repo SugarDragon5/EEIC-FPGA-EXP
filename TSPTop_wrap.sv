@@ -50,8 +50,8 @@ module TSPTop_wrap(
                     digits[1]<=performance[7:4];
                     digits[2]<=performance[11:8];
                     digits[3]<=performance[15:12];
-                    digits[4]<=performance[19:16];
-                    digits[5]<=performance[23:20];
+                    digits[4]<={1'b0,performance[18:16]};
+                    digits[5]<=0;
                 end
             end else begin
                 if(!cnt[22:0])begin
