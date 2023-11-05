@@ -1,0 +1,53 @@
+\documentclass[dvipdfmx,10pt,a4paper,titlepage]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{ascmac}
+\usepackage{amsmath}
+\usepackage{fancybox}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{listings,jvlisting}
+\usepackage{color}
+\usepackage{url}
+\definecolor{OliveGreen}{rgb}{0.0,0.6,0.0}
+\definecolor{Orenge}{rgb}{0.89,0.55,0}
+\definecolor{SkyBlue}{rgb}{0.28,0.28,0.95}
+\lstset{
+  language=C,
+  basicstyle={\ttfamily},
+  identifierstyle={\small},
+  commentstyle={\small\itshape},
+  keywordstyle={\small\bfseries},
+  ndkeywordstyle={\small},
+  stringstyle={\small\ttfamily},
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+  numbers=left,
+  xrightmargin=0zw,
+  xleftmargin=3zw,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1zw,
+  lineskip=-0.5ex,
+  keepspaces=true,
+  keywordstyle={\color{SkyBlue}},
+  commentstyle={\color{OliveGreen}},
+  stringstyle=\color{Orenge},
+  showstringspaces=false
+}
+\title{電気電子情報実験・演習第二 課題12\\「FPGAを用いたアルゴリズム実装」最終レポート}
+\author{電子情報工学科3年 03230422 佐藤 龍吾}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{実験の目的・背景}
+\input{source/introduction.tex}
+\section{基本課題}
+\input{source/basic.tex}
+\section{自由課題}
+\input{source/advance.tex}
+\section{参考文献}
+\input{source/reference.tex}
+\end{document}

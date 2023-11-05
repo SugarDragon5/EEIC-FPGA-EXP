@@ -4,3 +4,8 @@ output_files/
 *.bak
 *.out
 *.vcd
+
+*.pdf
+*.log
+*.aux
+*.dvi
