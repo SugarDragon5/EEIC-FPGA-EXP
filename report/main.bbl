@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{InfographicsOperationCosts2016}
+Infographics: {{Operation Costs}} in {{CPU Clock Cycles}}.
+\newblock
+  \url{http://ithare.com/infographics-operation-costs-in-cpu-clock-cycles/},
+  September 2016.
+
+\bibitem{YiLangSinpurunatitupuJianburituziJieSokGouZao2022}
+河野一郎, 脇坂伸治, 廣田俊明, 斉藤高志, 鵜川健, 栗田洋一郎.
+\newblock シンプルなチップ間ブリッジ接続構造.
+\newblock マイクロエレクトロニクスシンポジウム論文集, Vol.~32, pp. 163--166,
+  2022.
+
+\bibitem{HouTengYouTaiXunHuiserusumanWenTiTSPNoJiBenDenaJiekiFang2021}
+後藤優太.
+\newblock {巡回セールスマン問題(TSP)の基本的な解き方(ILS)}.
+\newblock
+  \url{https://future-architect.github.io/articles/20211201a/index.html},
+  November 2021.
+
+\bibitem{ZhanZhengCheZaiBanDaoTinoDongXiangtoShiZhuangJiShunoXingFang2017}
+植田展正.
+\newblock 車載半導体の動向と実装技術の行方.
+\newblock マイクロエレクトロニクスシンポジウム論文集, Vol.~27, pp. 77--80,
+  2017.
+
+\bibitem{YuKaerekutoronikusuwoQianYinKeninSuruBanDaoTiJiShu2017}
+藤本裕.
+\newblock カーエレクトロニクスを牽引(けんいん)する半導体技術.
+\newblock 応用物理, Vol.~86, No.~3, pp. 194--197, 2017.
+
+\bibitem{YuShiTitupuretutonoGaiNianto3dIcnorapitudopurototaipingu2023}
+福島誉史.
+\newblock チップレットの概念と3d-{{Icのラピッドプロトタイピング}}.
+\newblock エレクトロニクス実装学会誌, Vol.~26, No.~4, pp. 333--340, 2023.
+
+\end{thebibliography}

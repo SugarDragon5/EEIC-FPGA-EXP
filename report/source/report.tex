@@ -1,0 +1,50 @@
+\subsection{車載用半導体の用途分類・機能・性能}
+電気自動車・自動運転技術の進歩や、IoT化・カーシェアリングなどによる機能・役割の発展に伴って、車載用半導体の需要は増加している。
+車載半導体の役割は大きく以下の通り分類できる。\cite{ZhanZhengCheZaiBanDaoTinoDongXiangtoShiZhuangJiShunoXingFang2017}それぞれに対し機能・性能のニーズをまとめる。
+\begin{itemize}
+    \item 電動化・ハイブリッド分野
+    \item 自動運転分野・センシング分野
+\end{itemize}
+
+\subsubsection{電動化・ハイブリッド分野}
+電気自動車やハイブリッド車といった、環境にやさしい車両の需要が増加している。
+いずれにおいても、次の2点がポイントとなる。
+\begin{itemize}
+    \item 消費電力を抑えるための低熱抵抗・損失低減が可能な構造: 
+    電気自動車では、消費電力が抑えられれば航続距離の向上に直結する。\cite{ZhanZhengCheZaiBanDaoTinoDongXiangtoShiZhuangJiShunoXingFang2017}
+    \item 車両の限られたスペースに搭載可能な小型化: 
+    ハイブリッド車ではエンジン・インバータの両方を限られたスペースに搭載する必要があるため、小型で出力密度が高い部品のニーズが高い。
+    $\mathrm{Si}$以上の特性を持つ$\mathrm{SiC}$の採用や、放熱方式の改善などによって、小型化・出力密度の向上が図られている。
+    チップサイズの小型化は、熱密度増加など信頼性の低下を招くとされており、耐熱性を高めるための開発も進められている。\cite{ZhanZhengCheZaiBanDaoTinoDongXiangtoShiZhuangJiShunoXingFang2017}
+\end{itemize}
+
+\subsubsection{自動運転分野・センシング分野}
+近年自動車に搭載される機能は多様化されており、自動ブレーキ、クルーズコントロール、自動駐車などの自動運転・運転支援機能が搭載されることが増えている。
+
+したがって、センサとしてカメラ、レーダなどが搭載される。
+
+レーダーは物体検知に用いるが、霧・雨など悪天候下でも十分機能させるために高周波の電波を用いる。
+したがって、高周波特性に優れた半導体が求められる。素材のコストが高く、低価格化の需要が高い。
+
+カメラは単体では機能せず、取得した画像を処理して物体検知を行う必要がある。
+したがって、大規模集積回路が必要となるが、これは汎用プロセッサでは難しい。高速・低消費電力・低コストな専用プロセッサが求められる。
+また、カメラの物体認識における誤認識・未認識は事故に直結してしまうため、高い信頼性が求められる。\cite{YuKaerekutoronikusuwoQianYinKeninSuruBanDaoTiJiShu2017}
+
+\subsection*{チップレット技術の動向}
+近年半導体の集積度の向上は鈍化しつつあり、従来のアーキテクチャには限界がきている。
+そこで注目されているのがチップレットというアーキテクチャである。
+
+一つのチップの集積度を高めようとすると、プロセスノードが微細化し、コストが高くなる。
+チップレットアーキテクチャでは、一つのチップですべてを完結させようとする(モノリシック)のではなく、
+チップを複数の小さなチップレットに分割する。
+それらをうまく組み合わせ、互いに通信することで、一つのチップとして機能するのである。\cite{YuShiTitupuretutonoGaiNianto3dIcnorapitudopurototaipingu2023}
+
+チップレットのメリットは以下の通りである。
+\begin{itemize}
+    \item モノリシックなチップでは実現不可能な規模の実装が可能\cite{YiLangSinpurunatitupuJianburituziJieSokGouZao2022}
+\end{itemize}
+一方デメリットも有る。
+\begin{itemize}
+    \item チップレット間の通信には消費電力がかかる
+    \item チップレット間で高速な通信をする必要があるが、規格が十分に定まっていない\cite{YuShiTitupuretutonoGaiNianto3dIcnorapitudopurototaipingu2023}
+\end{itemize}
