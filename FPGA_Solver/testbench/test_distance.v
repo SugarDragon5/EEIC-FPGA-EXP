@@ -1,13 +1,16 @@
 `default_nettype none
 
 module tb_distance;
-  reg  [31:0] x1;
-  reg  [31:0] y1;
-  reg  [31:0] x2;
-  reg  [31:0] y2;
+  reg clk;
+
+  reg  [7:0] x1;
+  reg  [7:0] y1;
+  reg  [7:0] x2;
+  reg  [7:0] y2;
   wire [31:0] res;
 
   distance distance (
+      .clk(clk),
       .x1 (x1),
       .y1 (y1),
       .x2 (x2),
@@ -15,13 +18,20 @@ module tb_distance;
       .res(res)
   );
 
-
+  integer i;
   initial begin
     $dumpfile("tb_distance.vcd");
     $dumpvars(0, tb_distance);
+    for(i=0;i<10;i=i+1)$dumpvars(1, distance.distance_sq[i]);
+    for(i=0;i<8;i=i+1)$dumpvars(1, distance.distance[i]);
+  end
+
+  always begin
+    #1 clk = ~clk;
   end
 
   initial begin
+    clk<=0;
     #2 x1 <= 0;
     y1 <= 0;
     x2 <= 3;
@@ -42,8 +52,8 @@ module tb_distance;
     y1 <= 0;
     x2 <= 100;
     y2 <= 100;
-    #10;
-    $finish(2);
+    #100;
+$finish(2);
   end
 
 endmodule
