@@ -4,6 +4,7 @@ main.pdf: main.dvi
 	xdg-open main.pdf
 main.dvi: main.tex source/*.tex
 	platex main.tex
+	platex main.tex
 clean:
 	rm *.pdf *.log *.aux *.dvi
 	rm source/*.aux
