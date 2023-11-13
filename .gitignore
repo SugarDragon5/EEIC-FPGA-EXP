@@ -9,3 +9,5 @@ output_files/
 *.log
 *.aux
 *.dvi
+*.bbl
+*.blg

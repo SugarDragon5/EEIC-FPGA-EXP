@@ -10,20 +10,73 @@
     \end{enumerate}
 \end{itemize}
 \subsubsection{実験結果}
-課題1-1, 1-2のそれぞれに対し、Quartusでのコンパイル時に回路規模(必要ロジック数)と最大動作クロック周波数を測定した。結果は以下の通りである。
-//TODO
+課題1-1, 1-2のそれぞれに対し、Quartusでのコンパイル時に回路規模(必要ロジック数)と最大動作クロック周波数を測定した結果を表~\ref{tab:basic1}に示す。
+
+\begin{table}[h]
+    \caption{課題1-1(左), 1-2(右)における回路規模と最大動作クロック周波数}\label{tab:basic1}
+    \begin{tabular}{|l|l|}
+    \hline
+    Estimate of Logic utilization (ALMs needed) & 24 \\\hline
+    Combinational ALUT usage for logic          & 43 \\\hline
+    -- 7 input functions                        & 0  \\\hline
+    -- 6 input functions                        & 4  \\\hline
+    -- 5 input functions                        & 0  \\\hline
+    -- 4 input functions                        & 1  \\\hline
+    -- \textless{}=3 input functions            & 38 \\\hline
+    Dedicated logic registers                   & 39 \\\hline
+    I/O pins                                    & 15 \\\hline
+    Total DSP Blocks                            & 0  \\\hline
+    Fmax [MHz]                                       & 389.71 \\\hline
+    \end{tabular}
+    \begin{tabular}{|l|l|}
+        \hline
+        Estimate of Logic utilization (ALMs needed) & 24 \\\hline
+        Combinational ALUT usage for logic          & 42 \\\hline
+        -- 7 input functions                        & 0  \\\hline
+        -- 6 input functions                        & 5  \\\hline
+        -- 5 input functions                        & 5  \\\hline
+        -- 4 input functions                        & 0  \\\hline
+        -- \textless{}=3 input functions            & 32 \\\hline
+        Dedicated logic registers                   & 39 \\\hline
+        I/O pins                                    & 15 \\\hline
+        Total DSP Blocks                            & 0 \\\hline
+        Fmax [MHz]                                       & 323.21 \\\hline
+    \end{tabular}
+\end{table}
 
 課題1-1 → 1-2で処理が少し複雑になったことによって、
 \begin{itemize}
     \item 回路規模は大きく変化しなかった。
     \item 必要な多入力演算器の数が多くなった。
+    \item 最大動作クロック周波数が低下した。
 \end{itemize}
 
 \subsection{基本課題2}
 \subsubsection{実験内容}
 配布資料にあるプログラムEXE2(電卓・リモコン制御プログラム)をQuartusでコンパイルし、FPGA上で実行した。
 \subsubsection{実験結果}
-//TODO
+EXE2をコンパイルした際の回路規模(必要ロジック数)と最大動作クロック周波数を表~\ref{tab:basic2}に示す。
+\begin{table}[h]
+    \caption{課題2における回路規模と最大動作クロック周波数}\label{tab:basic2}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    Estimate of Logic utilization (ALMs needed) & 576  \\\hline
+    Combinational ALUT usage for logic          & 1109 \\\hline
+    -- 7 input functions                        & 6    \\\hline
+    -- 6 input functions                        & 32   \\\hline
+    -- 5 input functions                        & 154  \\\hline
+    -- 4 input functions                        & 200  \\\hline
+    -- \textless{}=3 input functions            & 717  \\\hline
+    Dedicated logic registers                   & 188  \\\hline
+    I/O pins                                    & 69   \\\hline
+    Total DSP Blocks                            & 1   \\\hline
+    Fmax [MHz]                                  & 33.54 \\\hline
+    \end{tabular}
+    \end{center}
+\end{table}
+課題1に比べると、ロジックの規模が非常に大きくなり、DSPも使用するようになった。
+また、クロック周波数が大幅に低下している。クリティカルパスは確認していないが、おそらく四則演算(特に除算)がボトルネックになっていると思われる。
 \subsection{基本課題3}
 \subsubsection{実験内容}
 \begin{itemize}
@@ -32,7 +85,35 @@
     \item 課題3-3: 3-2のプログラムに加え、左上に自分の名前(Ryugo.S)と表示させた。
 \end{itemize}
 \subsubsection{実験結果}
-//TODO
+課題3-1のプログラムをコンパイルした際の回路規模(必要ロジック数)と最大動作クロック周波数を表~\ref{tab:basic3}に示す。
+3-2, 3-3については、3-1と大きな差が生じなかったので省略する。
+\begin{table}[h]
+    \caption{課題3-1における回路規模と最大動作クロック周波数}\label{tab:basic3}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+        \hline
+    Estimate of Logic utilization (ALMs needed) & 118    \\\hline
+    Combinational ALUT usage for logic          & 190    \\\hline
+    -- 7 input functions                        & 0      \\\hline
+    -- 6 input functions                        & 45     \\\hline
+    -- 5 input functions                        & 10     \\\hline
+    -- 4 input functions                        & 13     \\\hline
+    -- \textless{}=3 input functions            & 122    \\\hline
+    Dedicated logic registers                   & 95     \\\hline
+    I/O pins                                    & 96     \\\hline
+    Total MLAB memory bits                      & 0      \\\hline
+    Total block memory bits                     & 589824 \\\hline
+    Total DSP Blocks                            & 0      \\\hline
+    Total PLLs                                  & 1      \\\hline
+    -- PLLs                                     & 1     \\\hline
+    PLL[MHz] & 101.08\\\hline
+    VGA[MHz] & 192.46\\\hline
+    \end{tabular}
+    \end{center}
+\end{table}
+
+画面出力にあたり、各ピクセルごとにRGBの値を保持しておく必要があり、これをblockメモリで実装しているため利用量が大きくなっている。
+VGA出力は40MHzのクロックで動作するため、PLLを挟む必要があり、2つのクロックが同時に動作するような格好になる。それぞれに対し最大動作周波数を考えることになる。
 
 \subsection{基本課題4}
 \subsubsection{実験内容}
@@ -41,4 +122,28 @@
     \item 課題4-2: 配布資料にあるプログラムEXE42(周波数の倍化・半化プログラム)をQuartusでコンパイルし、FPGA上で実行した。
 \end{itemize}
 \subsubsection{実験結果}
-//TODO
+課題4-1のプログラムをコンパイルした際の回路規模(必要ロジック数)と最大動作クロック周波数を表~\ref{tab:basic4}に示す。
+\begin{table}[h]
+    \caption{課題4-1における回路規模と最大動作クロック周波数}\label{tab:basic4}
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    Estimate of Logic utilization (ALMs needed) & 162    \\\hline
+    Combinational ALUT usage for logic          & 262    \\\hline
+    -- 7 input functions                        & 6      \\\hline
+    -- 6 input functions                        & 31     \\\hline
+    -- 5 input functions                        & 20     \\\hline
+    -- 4 input functions                        & 33     \\\hline
+    -- \textless{}=3 input functions            & 172    \\\hline
+    Dedicated logic registers                   & 178    \\\hline
+    I/O pins                                    & 106    \\\hline
+    Total MLAB memory bits                      & 0      \\\hline
+    Total block memory bits                     & 196608 \\\hline
+    Total DSP Blocks                            & 0      \\\hline
+    CLOCK\_500:u1|COUNTER\_500[9]	    [MHz] & 160.82 \\\hline
+    AUD\_BCLK	    [MHz] & 186.15 \\\hline
+    CLOCK\_50	    [MHz] & 287.19 \\\hline
+    i2c:u2|END  [MHz] & 418.76 \\\hline
+    \end{tabular}
+    \end{center}
+\end{table}

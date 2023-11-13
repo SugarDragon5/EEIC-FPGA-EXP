@@ -1,6 +1,6 @@
 \subsection{スケジュールと実装内容}
 まず、実験のスケジュールと実装内容を表\ref{tab:schedule}に示す。
-\begin{table}
+\begin{table}[h]
     \begin{center}
         \caption{実験のスケジュールと実装内容}\label{tab:schedule}
         \begin{tabular}{|c|c|c|} \hline
@@ -15,10 +15,9 @@
     \end{center}
 \end{table}
 \ref{sec:goal}節で述べた目標のうち、1. 2. について実行し、FPGA上で山登り法を並列に実行することで高速に巡回セールスマン問題の局所探索法を求めることができた。
-次項から、実装したハードウエアの構成・アルゴリズムを説明する。
 
 \subsection{ハードウエア構成}
-\begin{figure}
+\begin{figure}[h]
     \caption{ハードウエア構成}\label{fig:hardware}
     \begin{center}
         \includegraphics[width=15cm]{figure/hardware.png}
@@ -55,7 +54,7 @@ XORShiftは状態$x, y, z, w$に対し、
     w \leftarrow& (w\oplus(w>>19))\oplus((x\oplus(x<<11))\oplus((x\oplus(x<<11))>>8))
 \end{align*}
 を計算することで疑似乱数列${w}$を求めるアルゴリズムである。
-ビット演算のみで計算できるため極めて高速で、また周期も$2^{128}-1$と非常に長く品質も高いという特徴がある。
+ビット演算のみで計算できるため極めて高速で、また周期も$2^{128}-1$と非常に長く品質も高いという特徴がある。\cite{JSSv008i14}
 このアルゴリズムを用いて、クロック毎に新しい乱数を生成するモジュールを作成し、乱数が必要な箇所それぞれでインスタンス化した。
 
 \subsection{距離計算アルゴリズム}\label{sec:distance}
@@ -70,9 +69,9 @@ $x_n$は$\sqrt{a}$に収束していく。
 今回はユークリッド距離の計算であり、初期値としてマンハッタン距離$d_m=|x_1-x_2|+|y_1-y_2|$を用いると、比較的早く収束する。
 x座標、y座標が$[0,255]$の2点に対し、整数範囲で誤差1以内の距離を計算するには、$x_3$まで計算すれば十分であることがCPUプログラムによる検証により判明した。
 
-当初、1クロックで$x_3$までの計算(二乗距離・マンハッタン距離・ニュートン法3回)を実行していたが、後述の通り周波数が大きく低下してしまったため、図~\ref{fig:distance}のように5クロックに分割しパイプライン化した。
+当初、1クロックで$x_3$までの計算(二乗距離・マンハッタン距離・ニュートン法3回)を実行していたが、\ref{sec:frequency}で言及する通り周波数が大きく低下してしまったため、図~\ref{fig:distance}のように5クロックに分割しパイプライン化した。
 
-\begin{figure}
+\begin{figure}[h]
     \begin{center}
         \includegraphics[width=15cm]{figure/distance_newton.jpg}
         \caption{距離計算モジュールのパイプライン化}\label{fig:distance}

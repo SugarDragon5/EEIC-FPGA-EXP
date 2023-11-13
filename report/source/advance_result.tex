@@ -1,6 +1,6 @@
 \subsection{実装量}
 図~\ref{fig:hardware}に示した各モジュールを実装した結果、それぞれのVerilog実装量は表~\ref{tab:sourcesize}のようになった。
-\begin{table}
+\begin{table}[h]
     \begin{center}
         \caption{各モジュールのVerilog実装量}\label{tab:sourcesize}
         \begin{tabular}{|l|l|l|}
@@ -33,7 +33,7 @@ PC上でテストベンチを実行し、シミュレーション結果を得た
 
 乱数的な手法を用いているため、実行するたびに結果が異なるが、総距離2600～2800程度の局所最適解に陥ることが多かった。
 並列度ごとに、局所最適解に陥るまでに要するクロック数を計測した結果を表~\ref{tab:time}に示す。
-\begin{table}
+\begin{table}[h]
     \begin{center}
         \caption{並列度ごとの局所最適解に陥るまでに要するクロック数}\label{tab:time}
         \begin{tabular}{|c|c|}
@@ -48,7 +48,7 @@ PC上でテストベンチを実行し、シミュレーション結果を得た
 並列度を$n$にすると、局所最適解に陥るまでに要するクロック数は$\frac{1}{n}$になると予想されるが、概ねその通りの結果となった。
 \subsection{合成結果}\label{sec:compile}
 Quartus上でコンパイルを行い、並列度ごとに最大周波数・使用ロジック数・使用演算器数を計測した結果を表~\ref{tab:compile}に示す。
-\begin{table}
+\begin{table}[h]
     \begin{center}
         \caption{並列度ごとの合成結果}\label{tab:compile}
         \begin{tabular}{|c|c|c|c|}
